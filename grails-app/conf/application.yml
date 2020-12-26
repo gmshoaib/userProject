@@ -1,0 +1,59 @@
+server:
+    contextPath: /user_project
+    port: 9093
+    session:
+        timeout: 36000
+
+hibernate:
+    cache:
+        queries: false
+        use_second_level_cache: false
+        use_query_cache: false
+
+dataSource:
+    pooled: true
+    dbCreate: update
+    jmxExport: true
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+
+environments:
+    development:
+        grails:
+            cors:
+                enabled: true
+        dataSource:
+            logSql: false
+            dbCreate: update
+            url: jdbc:mysql://localhost/user_db?useUnicode=true&characterEncoding=utf8
+    test:
+        dataSource:
+            dbCreate: update
+            url: jdbc:mysql://localhost/user_db?useUnicode=true&characterEncoding=utf8
+    production:
+        dataSource:
+            dbCreate: update
+            logSql: false
+            url: jdbc:mysql://localhost/user_db?useUnicode=true&characterEncoding=utf8
+            properties:
+                jmxEnabled: true
+                initialSize: 5
+                maxActive: 50
+                minIdle: 5
+                maxIdle: 25
+                maxWait: 10000
+                maxAge: 600000
+                timeBetweenEvictionRunsMillis: 5000
+                minEvictableIdleTimeMillis: 60000
+                validationQuery: SELECT 1
+                validationQueryTimeout: 3
+                validationInterval: 15000
+                testOnBorrow: true
+                testWhileIdle: true
+                testOnReturn: false
+                jdbcInterceptors: ConnectionState
+                defaultTransactionIsolation: 4 # TRANSACTION_READ_COMMITTED
+
+
+
